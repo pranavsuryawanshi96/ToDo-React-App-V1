@@ -4,10 +4,15 @@ h1 {
   margin: 10px;
   margin-bottom: 20px;
 }
-/* input {
-  width: 50%;
-} */
 
 .items-container {
   text-align: left;
+  margin-top: 10px;
+  align-items: center;
+}
+.p-btn {
+  min-width: 80px;
+}
+.p-row {
+  margin: 10px 5px;
 }

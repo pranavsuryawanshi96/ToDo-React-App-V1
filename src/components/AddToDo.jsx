@@ -1,7 +1,7 @@
 function AddToDo() {
   return (
     <div className="container text-center">
-      <div className="row">
+      <div className="row p-row">
         <div className="col-6">
           <input
             type="text"
@@ -13,7 +13,7 @@ function AddToDo() {
           <input type="date" className="form-control" />
         </div>
         <div className="col-2">
-          <button type="button" className="btn btn-success">
+          <button type="button" className="btn btn-success p-btn">
             Add
           </button>
         </div>
