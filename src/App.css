@@ -1,18 +1,7 @@
-h1 {
-  font-weight: 700;
-  font-size: 45px;
-  margin: 10px;
-  margin-bottom: 20px;
-}
-
-.items-container {
-  text-align: left;
-  margin-top: 10px;
-  align-items: center;
-}
-.p-btn {
-  min-width: 80px;
-}
 .p-row {
   margin: 10px 5px;
+}
+
+.p-btn {
+  min-width: 80px;
 }

@@ -1,0 +1,43 @@
+name: TODO APP
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release Tag (e.g., v1.0.0)"
+        required: true
+        default: "v1.0.0"
+
+      deploy_target:
+        description: "What to deploy?"
+        required: true
+        default: "frontend"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Show Inputs
+        run: |
+          echo "Release Tag: ${{ github.event.inputs.release_tag }}"
+          echo "Deploy Target: ${{ github.event.inputs.deploy_target }}"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project (Vite)
+        run: npm run build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: ./dist
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions - ${{ github.event.inputs.release_tag }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

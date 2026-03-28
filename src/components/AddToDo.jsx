@@ -13,7 +13,7 @@ function AddToDo() {
           <input type="date" className="form-control" />
         </div>
         <div className="col-2">
-          <button type="button" className="btn btn-success p-btn">
+          <button type="button" className="btn btn-success w-100">
             Add
           </button>
         </div>
