@@ -10,14 +10,19 @@ function AddToDo({ onNewItem }) {
   const handleDateChange = (event) => {
     setDueDate(event.target.value);
   };
-  const handleAddButtonClicked = () => {
+  const handleAddButtonClicked = (event) => {
+    if (todoName === "" || dueDate === "") {
+      alert("Please enter both name and due date");
+      return;
+    }
+    event.preventDefault();
     onNewItem(todoName, dueDate);
     setDueDate("");
     setTodoName("");
   };
   return (
     <div className="container text-center">
-      <div className="row p-row">
+      <form className="row p-row" onSubmit={handleAddButtonClicked}>
         <div className="col-6">
           <input
             type="text"
@@ -37,14 +42,15 @@ function AddToDo({ onNewItem }) {
         </div>
         <div className="col-2">
           <button
-            type="button"
+            // onSubmit={() => handleAddButtonClicked(todoName, dueDate)}
+            // type="button"
             className="btn btn-success w-100"
-            onClick={handleAddButtonClicked}
+            // onClick={() => handleAddButton(todoName, dueDate)}
           >
             Add
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
