@@ -2,16 +2,6 @@ name: TODO APP
 
 on:
   workflow_dispatch:
-    inputs:
-      release_tag:
-        description: "Release Tag (e.g., v1.0.0)"
-        required: true
-        default: "v1.0.0"
-
-      deploy_target:
-        description: "What to deploy?"
-        required: true
-        default: "frontend"
 
 jobs:
   deploy:
