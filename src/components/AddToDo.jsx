@@ -1,24 +1,35 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function AddToDo({ onNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  // const [todoName, setTodoName] = useState("");
+  // const [dueDate, setDueDate] = useState("");
+  // use the useRef hook to store the current value of the todoName and dueDate variables, and update them in the handleNameChange and
+  //  functions. This way, we can avoid unnecessary re-renders of the component when the user types in the input fields.
+  // we are using this ref in jsx to get current value by the user
+  const todoNameElement = useRef();
+  const dueDateElement = useRef();
 
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-  const handleDateChange = (event) => {
-    setDueDate(event.target.value);
-  };
+  // const handleNameChange = (event) => {
+  //   // setTodoName(event.target.value);
+  //   // noOfUpdates.current++;
+  // };
+  // const handleDateChange = (event) => {
+  //   // setDueDate(event.target.value);
+  //   // console.log("Date updated " + noOfUpdates.current);
+  // };
   const handleAddButtonClicked = (event) => {
+    event.preventDefault();
+    const todoName = todoNameElement.current.value;
+    const dueDate = dueDateElement.current.value;
+    todoNameElement.current.value = "";
+    dueDateElement.current.value = "";
     if (todoName === "" || dueDate === "") {
       alert("Please enter both name and due date");
       return;
     }
-    event.preventDefault();
     onNewItem(todoName, dueDate);
-    setDueDate("");
-    setTodoName("");
+    // setDueDate("");
+    // setTodoName("");
   };
   return (
     <div className="container text-center">
@@ -27,17 +38,20 @@ function AddToDo({ onNewItem }) {
           <input
             type="text"
             className="form-control"
+            ref={todoNameElement}
             placeholder="Enter Todo here"
-            value={todoName}
-            onChange={handleNameChange}
+            //  not req value if use the useref
+            // value={todoName}
+            // onChange={handleNameChange}
           />
         </div>
         <div className="col-4">
           <input
             type="date"
             className="form-control"
-            value={dueDate}
-            onChange={handleDateChange}
+            ref={dueDateElement}
+            // value={dueDate}
+            // onChange={handleDateChange}
           />
         </div>
         <div className="col-2">
